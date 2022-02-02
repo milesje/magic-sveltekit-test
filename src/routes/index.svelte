@@ -7,6 +7,7 @@
 	onMount(async () => {
 		try {
 			auth.isLoggedIn();
+			
 		} catch (err) {
 			console.log(err);
 		}
@@ -14,7 +15,7 @@
 
 	async function login() {
 		try {
-			await auth.login(email);
+			await auth.login();
 		} catch (err) {
 			console.error(err);
 		}
@@ -24,8 +25,4 @@
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 
-<form on:submit|preventDefault={login}>
-	<label for="email">Email</label>
-	<input id="email" bind:value={email} />
-	<button class="btn btn-blue w-full m-0" type="submit">Login</button>
-</form>
+<button on:click={() => login()}>Login</button>

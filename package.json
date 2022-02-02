@@ -28,6 +28,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@magic-ext/oauth": "^2.0.1",
     "magic-sdk": "^6.1.0"
   }
 }
