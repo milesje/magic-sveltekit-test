@@ -7,12 +7,20 @@ export const userStore = writable(null);
 let magic;
 
 async function createMagic() {
-	magic = magic || new Magic('YOUR KEY GOES HERE', {extensions: [new OAuthExtension()]});
+	magic = magic || new Magic('pk_live_796AA1C2CC0D1CED', {extensions: [new OAuthExtension()]});
 	return magic;
 }
 
 export async function getOauthResult(){
-	return await magic.oauth.getRedirectResult();
+	const magic = await createMagic();
+	try{
+		const ret = await magic.oauth.getRedirectResult();
+		console.log(ret)
+		return ret
+	} catch (err){
+		console.error(err)
+	}
+	return null
 }
 
 export async function login(): Promise<void> {
@@ -20,7 +28,7 @@ export async function login(): Promise<void> {
 	await magic.oauth.loginWithRedirect({
 		provider: 'google',
 		redirectURI: 'http://localhost:3000/oauth/callback',
-		scope: ['user:email']
+		scope: ['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
 	})
 }
 
