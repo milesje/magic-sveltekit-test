@@ -7,7 +7,7 @@ export const userStore = writable(null);
 let magic;
 
 async function createMagic() {
-	magic = magic || new Magic('pk_live_796AA1C2CC0D1CED', { extensions: [new OAuthExtension()] });
+	magic = magic || new Magic('PK_LIVE_KEY', { extensions: [new OAuthExtension()] });
 	return magic;
 }
 
